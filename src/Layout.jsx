@@ -5,10 +5,7 @@ import DataContext from './context/DataContext'
 
 export default function Layout() {
   const [cart, setCart] = useState()
-  // useEffect(()=>{
-  //   if(location.pathname === '/')
-  //   location.href='/categories'
-  // },[])
+  
   useEffect(()=>{
     if(cart)localStorage.setItem('cart', JSON.stringify(cart))
     else setCart(JSON.parse(localStorage.getItem('cart')))
@@ -16,6 +13,7 @@ export default function Layout() {
   return (
     <DataContext.Provider value={{ cart, setCart }} >
       <div className="layout">
+        {console.log("💙💙💙💙💙💙💙")}
         <Cart />
         <Content />
       </div>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ItemList from "./ItemList";
 import Categories from "./Categories";
 import ItemPage from "./ItemPage";
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import NotFound from "./NotFound";
 
 export default function Content() {
@@ -14,7 +14,9 @@ export default function Content() {
 
   return (
     <div className="content">
-      {<button onClick={() => location.pathname='/categories'}>Categories</button>}
+      <Link to = {'/categories/'}>
+        <button>Categories</button>
+        </Link>
 
       <Routes>
         <Route path="/" element = {<Categories/>}/>

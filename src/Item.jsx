@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom"
 import DataContext from "./context/DataContext"
 import { useContext} from 'react'
 
-export default function Item({ item,onClick=()=>{} }) {
+export default function Item({ item }) {
   let { name, emoji, price, id } = item
 
   // const valueFromContext = useContext(DataContext)
@@ -37,11 +38,13 @@ export default function Item({ item,onClick=()=>{} }) {
   }
 
   return (
-    <div className='item' onClick={onClick}>
+    <div className='item'>
+      <Link to= {"/items/"+id}>
       <div>{name}</div>
       <div>{emoji}</div>
       <div>{price}</div>
-      <div className='buttons' onClick={(e)=>{e.stopPropagation()}}>
+      </Link>
+      <div className='buttons'>
         <button onClick={handlePlus}>+</button>
         <span>{cart&&cart[id]?.qty || 0}</span>
         <button onClick={handleMinus} >-</button>
