@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import DataContext from "./context/DataContext"
 import { useContext} from 'react'
 
@@ -36,14 +36,17 @@ export default function Item({ item }) {
       setCart(newCart)
     }
   }
+  const nav = useNavigate()
 
   return (
     <div className='item'>
-      <Link to= {"/items/"+id}>
+
+      <div onClick= {()=>nav("/items/"+id)}>
       <div>{name}</div>
       <div>{emoji}</div>
       <div>{price}</div>
-      </Link>
+      </div>
+
       <div className='buttons'>
         <button onClick={handlePlus}>+</button>
         <span>{cart&&cart[id]?.qty || 0}</span>

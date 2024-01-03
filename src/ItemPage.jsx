@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import DataContext from "./context/DataContext";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function ItemPage({ url }) {
   const [item, setItem] = useState();
@@ -32,18 +32,21 @@ export default function ItemPage({ url }) {
       setCart(newCart);
     }
   };
+  const nav = useNavigate()
  useEffect(() => {
     fetch('https://jbh-mockserver.onrender.com/items/'+itemId)
       .then(reponse => reponse.json())
-      .then(res => setItem(res))
+      .then(res => setItem(res)).catch(()=>nav('/404'))
   }, [])
+
   return (
     <div>
       {item ? (
         <div className="item">
           <div>{item.name}</div>
-          <div>{item.emoji}</div>
+          <div>{<img className="imgitem" src={item.image}/>}</div>
           <div>{item.price}</div>
+          
           <div
             className="buttons"
             onClick={(e) => {
@@ -51,7 +54,6 @@ export default function ItemPage({ url }) {
             }}
           >
             <button onClick={handlePlus}>+</button>
-            {/* <span>{cart[item.id]?.qty || 0}</span> */}
             <button onClick={handleMinus}>-</button>
           </div>
         </div>

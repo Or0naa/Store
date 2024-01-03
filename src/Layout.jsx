@@ -13,7 +13,6 @@ export default function Layout() {
   return (
     <DataContext.Provider value={{ cart, setCart }} >
       <div className="layout">
-        {console.log("💙💙💙💙💙💙💙")}
         <Cart />
         <Content />
       </div>
